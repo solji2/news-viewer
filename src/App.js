@@ -3,9 +3,10 @@ import "./App.css";
 import { useState } from "react";
 import axios from "axios";
 import NewsItem from "./components/NewsItem";
+import NewsList from "./components/NewsList";
 
 const App = () => {
-  return <NewsItem />;
+  return <NewsList />;
 };
 
 export default App;

@@ -31,6 +31,7 @@ const NewsItemBlock = styled.div`
 `;
 
 const NewsItem = (article) => {
+  console.log("article:", article);
   //title:제목
   //description:내용
   //url:링크
