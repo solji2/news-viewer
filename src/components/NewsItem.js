@@ -6,8 +6,8 @@ const NewsItemBlock = styled.div`
     margin-right: 1rem;
     img {
       display: block;
-      width: 160;
-      height: 100;
+      width: 160px;
+      height: 100px;
       object-fit: cover;
     }
   }
@@ -30,17 +30,16 @@ const NewsItemBlock = styled.div`
   }
 `;
 
-const NewsItem = (article) => {
-  console.log("article:", article);
+const NewsItem = ({ article }) => {
   //title:제목
   //description:내용
   //url:링크
   //urlToImage:뉴스 이미지
   const { title, description, url, urlToImage } = article;
-
+  console.log("article2222:", article);
   return (
     <NewsItemBlock>
-      {!urlToImage && (
+      {urlToImage && (
         <div className="thumnail">
           <a href={url} target="_blank" rel="noopener noreferrer">
             <img src={urlToImage} alt="thumnail" />
