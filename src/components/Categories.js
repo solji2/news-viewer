@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 const categories = [
   {
@@ -55,16 +55,33 @@ const Catagory = styled.div`
     color: #495057;
   }
 
+  ${(props) =>
+    props.active &&
+    css`
+      font-weight: 600;
+      border-bottom: 2px solid #22b8cf;
+      color: #22b8cf;
+      &:hover {
+        color: #bc9dbb;
+      }
+    `};
+
   & + & {
     margin-left: 1rem;
   }
 `;
 
-const Categories = () => {
+const Categories = ({ onSelect, category }) => {
   return (
     <CategoriesBlock>
       {categories.map((c) => (
-        <Catagory key={c.name}>{c.text}</Catagory>
+        <Catagory
+          key={c.name}
+          active={category === c.name}
+          onClick={() => onSelect(c.name)}
+        >
+          {c.text}
+        </Catagory>
       ))}
     </CategoriesBlock>
   );

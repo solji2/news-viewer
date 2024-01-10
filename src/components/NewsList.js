@@ -22,7 +22,7 @@ const sampleArticle = {
   urlToImage: "https://via.placeholder.com/160",
 };
 
-const NewsList = () => {
+const NewsList = ({ category }) => {
   const [articles, setArticles] = useState(null);
   const [loading, setLoading] = useState(false); //API 요청이 대기중인지 판별
 
@@ -31,8 +31,9 @@ const NewsList = () => {
     const fetchData = async () => {
       setLoading(true);
       try {
+        const query = category === "all" ? "" : `$category=${category}`;
         const response = await axios.get(
-          "https://newsapi.org/v2/top-headlines?country=kr&apiKey=f0de6d8818fe46368c3251612dc3b779"
+          `https://newsapi.org/v2/top-headlines?country=kr${query}&apiKey=f0de6d8818fe46368c3251612dc3b779`
         );
         //console.log(response);
         setArticles(response.data.articles);
@@ -42,7 +43,7 @@ const NewsList = () => {
       setLoading(false);
     };
     fetchData();
-  }, []);
+  }, [category]);
 
   if (loading) {
     return <NewsListBlock>대기 중,,</NewsListBlock>;
