@@ -36,7 +36,7 @@ const NewsItem = ({ article }) => {
   //url:링크
   //urlToImage:뉴스 이미지
   const { title, description, url, urlToImage } = article;
-  console.log("article2222:", article);
+
   return (
     <NewsItemBlock>
       {urlToImage && (

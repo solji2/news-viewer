@@ -15,12 +15,6 @@ const NewsListBlock = styled.div`
     padding-right: 1rem;
   }
 `;
-const sampleArticle = {
-  title: "제목",
-  description: "내용",
-  url: "https://google.com",
-  urlToImage: "https://via.placeholder.com/160",
-};
 
 const NewsList = ({ category }) => {
   const [articles, setArticles] = useState(null);
@@ -31,11 +25,11 @@ const NewsList = ({ category }) => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const query = category === "all" ? "" : `$category=${category}`;
+        const query = category === "all" ? "" : `$category=${category}`; //category의 값이 all이면 빈문자열 반환 아니면 `$category=${category}`문자열 반환
         const response = await axios.get(
           `https://newsapi.org/v2/top-headlines?country=kr${query}&apiKey=f0de6d8818fe46368c3251612dc3b779`
         );
-        //console.log(response);
+        console.log(response);
         setArticles(response.data.articles);
       } catch (error) {
         console.log(error);
@@ -52,19 +46,10 @@ const NewsList = ({ category }) => {
   //articles 값이 설정되지 않았을 때
 
   if (!articles) {
-    console.log("존재하지않는다고");
     return null;
   }
 
-  //console.log("articles===>", articles);
   return (
-    // <NewsListBlock>
-    //   {articles.map((article) => {
-    //     console.log("article1111:", article);
-    //     <NewsItem key={article.url} article={article}></NewsItem>;
-    //   })}
-    // </NewsListBlock>
-
     <NewsListBlock>
       {articles.map((article) => (
         <NewsItem key={article.url} article={article} />
